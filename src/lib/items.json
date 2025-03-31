@@ -1,0 +1,61 @@
+[
+    {
+        "name": "Aceternity UI",
+        "description": "Aceternity UI est une bibliothèque UI moderne pour React et Next.js, offrant des composants élégants et réactifs avec une personnalisation avancée via Tailwind CSS, idéale pour des interfaces web soignées et performantes.",
+        "languages": ["Front-end"],
+        "frameworks": ["React"],
+        "types": ["UI Library"],
+        "link": "https://ui.aceternity.com/" ,
+        "payment": "gratuit"
+    },
+    {
+        "name": "Magic UI",
+        "description": "Magic UI est une collection d'animations et de composants interactifs pour React et Framer Motion, conçue pour enrichir les interfaces avec des effets fluides et modernes, facilement intégrables avec Tailwind CSS.",
+        "languages": ["Front-end"],
+        "frameworks": ["React"],
+        "types": ["UI Library"],
+        "link": "https://magicui.design/",
+        "github": "https://github.com/magicuidesign/magicui",
+        "payment": "gratuit"
+    },
+    {
+        "name": "Origin UI",
+        "description": "Origin UI propose une collection de composants UI optimisés pour React et Tailwind CSS, avec une intégration fluide pour créer des interfaces modernes et performantes.",
+        "languages": ["Front-end"],
+        "frameworks": ["React"],
+        "types": ["UI Library"],
+        "link": "https://originui.com/",
+        "github": "https://github.com/origin-space/originui",
+        "payment": "gratuit"
+    },
+    {
+        "name": "Tailwind CSS",
+        "description": "Tailwind CSS est un framework utility-first qui permet de créer des interfaces modernes et réactives rapidement avec des classes utilitaires directement dans le HTML ou JSX.",
+        "languages": ["Front-end"],
+        "frameworks": [],
+        "types": ["CSS Framework", "UI Library"],
+        "link": "https://tailwindcss.com/",
+        "github": "https://github.com/tailwindlabs/tailwindcss",
+        "payment": "gratuit"
+    },
+    {
+        "name": "Bootstrap",
+        "description": "Bootstrap est un framework CSS populaire qui facilite la création d'interfaces réactives avec un système de grille, des composants préconçus et une compatibilité mobile optimisée.",
+        "languages": ["Front-end"],
+        "frameworks": [],
+        "types": ["CSS Framework", "UI Library"],
+        "link": "https://getbootstrap.com/",
+        "github": "https://github.com/twbs/bootstrap",
+        "payment": "gratuit"
+    },
+    {
+        "name": "Vuetify",
+        "description": "Vuetify est une bibliothèque UI complète pour Vue.js, offrant des composants riches et réactifs basés sur Material Design pour créer des interfaces modernes et cohérentes.",
+        "languages": ["Front-end"],
+        "frameworks": ["Vue.js"],
+        "types": ["UI Library"],
+        "link": "https://vuetifyjs.com/",
+        "github": "https://github.com/vuetifyjs/vuetify",
+        "payment": "gratuit"
+    }
+]
