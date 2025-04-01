@@ -4,7 +4,7 @@ import Item from "@/components/Item";
 import Navbar from "@/components/Navbar";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export default async function Page({ params }: Props) {
