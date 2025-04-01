@@ -5,10 +5,10 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight, ExternalLink, Star } from "lucide-react";
 import items from "@/lib/items.json";
 import { getGithubStars } from "@/lib/github";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import Link from "next/link";
+import { Item } from "@/lib/definitions";
 
 type Props = {
   title: string;
@@ -60,7 +60,7 @@ export default function Table({ title, icon, items }: Props) {
   );
 }
 
-function ProjectItem({ item }: { item: any; }) {
+function ProjectItem({ item }: { item: Item; }) {
     const [stars, setStars] = useState<number | null>(null);
   
     useEffect(() => {
