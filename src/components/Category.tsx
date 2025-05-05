@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Label } from "@/components/ui/label";
 import MultipleSelector, { Option } from "@/components/ui/multiselect";
-import Table from "@/components/Table";
+import { Site } from "@/lib/definitions";
+import ItemCard from "./ItemCard";
+import { getTypeLabel } from "@/lib/utils";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 
 const allLanguages: Option[] = [
@@ -13,13 +15,8 @@ const allLanguages: Option[] = [
   { value: "python", label: "Python" },
 ]
 
-// const allFrameworks: Option[] = [
-//   { value: "react", label: "React" },
-//   { value: "vuejs", label: "Vue.js" },
-// ]
-
-export default function HomePage() {
-    const [sites, setSites] = useState<any[]>([]);
+export default function Category({ type }: {type: string}) {
+    const [sites, setSites] = useState<Site[]>([]);
     const [selectedLanguages, setSelectedLanguages] = useState<Option[]>([]);
     const [selectedFrameworks, setSelectedFrameworks] = useState<Option[]>([]);
     const [sortBy, setSortBy] = useState<"none" | "stars-desc" | "votes-desc">("none");
@@ -27,16 +24,33 @@ export default function HomePage() {
     useEffect(() => {
       async function fetchSites() {
         try {
-          const res = await fetch("/api/sites");
-          const data = await res.json();
-          setSites(data);
+            const params = new URLSearchParams();
+            params.append("type", type);
+            selectedFrameworks.forEach((fw) => params.append("frameworks", fw.label));
+            selectedLanguages.forEach((lang) => params.append("languages", lang.label));
+            const res = await fetch(`/api/sites?${params.toString()}`);
+            const data = await res.json();
+            setSites(data);
         } catch (error) {
-          console.error("Erreur lors du chargement des sites", error);
+            console.error("Erreur lors du chargement des sites", error);
         }
       }
   
       fetchSites();
-    }, []);
+    }, [selectedLanguages, selectedFrameworks]);
+
+    const sortedSites = useMemo(() => {
+      if (sortBy === "none") return sites;
+      return [...sites].sort((a, b) => {
+        if (sortBy === "stars-desc") {
+          return (b.github_stars ?? 0) - (a.github_stars ?? 0);
+        }
+        if (sortBy === "votes-desc") {
+          return (b.votes ?? 0) - (a.votes ?? 0);
+        }
+        return 0;
+      });
+    }, [sites, sortBy]);
 
     const allFrameworks: Option[] = Array.from(
       new Set(sites.flatMap((site) => site.frameworks || []))
@@ -44,7 +58,7 @@ export default function HomePage() {
   
   return (
     <div className="min-h-screen bg-gray-100 p-6 space-y-4 flex flex-col items-center">
-      <h1 className="text-3xl font-bold flex justify-center mb-12 mt-6">Liste outils développeurs</h1>
+      <h1 className="text-3xl font-bold flex justify-center mb-12 mt-6">Catégorie {getTypeLabel(type)}</h1>
       <div className="flex flex-col md:flex-row gap-4 p-4 bg-white shadow-md rounded-lg w-full xl:w-310">
         <div className="w-full md:w-1/2">
           <Label>Langages</Label>
@@ -90,11 +104,9 @@ export default function HomePage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full xl:w-310">
-        <Table title="Librairies UI" icon={<span>🖼️</span>} type="UI Library" selectedLanguages={selectedLanguages} selectedFrameworks={selectedFrameworks} sortBy={sortBy} />
-        <Table title="Authentification" icon={<span>🖼️</span>} type="Authentication" selectedLanguages={selectedLanguages} selectedFrameworks={selectedFrameworks} sortBy={sortBy} />
-        <Table title="ORM" icon={<span>🖼️</span>} type="ORM" selectedLanguages={selectedLanguages} selectedFrameworks={selectedFrameworks} sortBy={sortBy} />
-        <Table title="Visualisation de données" icon={<span>🖼️</span>} type="data visualization" selectedLanguages={selectedLanguages} selectedFrameworks={selectedFrameworks} sortBy={sortBy} />
-        <Table title="test & QA" icon={<span>🖼️</span>} type="testing" selectedLanguages={selectedLanguages} selectedFrameworks={selectedFrameworks} sortBy={sortBy} />
+        {sortedSites.map((site) => (
+          <ItemCard site={site} key={site.name} />    
+        ))}
       </div>
     </div>
   );

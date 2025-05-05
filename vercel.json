@@ -1,0 +1,6 @@
+{
+    "crons": [{
+      "path": "/api/refresh-stars",
+      "schedule": "0 1 * * *"
+    }]
+}

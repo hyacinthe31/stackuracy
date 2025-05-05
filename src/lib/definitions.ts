@@ -1,4 +1,4 @@
-export type Item = {
+export type Site = {
     name: string;
     description: string;
     languages: string[];
@@ -7,4 +7,6 @@ export type Item = {
     link: string;
     github?: string;
     payment: string;
+    votes: number;
+    github_stars: number
 };

@@ -11,10 +11,7 @@ const Navbar = () => {
   // Liste des liens de navigation
   const navLinks = [
     { name: 'Accueil', href: '/' },
-    { name: 'Services', href: '/services' },
     { name: 'À propos', href: '/about' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Contact', href: '/contact' },
   ];
 
   // Variantes pour les animations
@@ -45,20 +42,12 @@ const Navbar = () => {
   return (
     <>
     <div className='h-20 bg-gray-100'></div>
-    <nav className="fixed w-full z-50 transition-all duration-300 top-0 right-0 left-0 bg-white/90 shadow-md py-4">
+    <nav className="fixed w-full z-50 transition-all duration-300 top-9 right-0 left-0 bg-white/90 shadow-md py-4">
       <div className="mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center z-20">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="relative h-12 w-40"
-            >
-              {/* Remplacez par votre logo */}
-              <div className="font-bold text-xl">VotreLogo</div>
-            </motion.div>
+            <img src="/stackuracy_logo_long.jpg" alt="Logo" className="" width={200} height={100} />
           </Link>
 
           {/* Menu pour grand écran */}
@@ -67,14 +56,16 @@ const Navbar = () => {
               <Link 
                 key={link.name} 
                 href={link.href}
-                className="text-gray-800 hover:text-blue-600 transition-colors font-medium"
+                className="text-gray-800 hover:text-logo transition-colors font-medium"
               >
                 {link.name}
               </Link>
             ))}
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-full transition-colors">
-              Démarrer
-            </button>
+            <Link href={"/contact"}>
+              <button className="bg-logo hover:bg-logo-dark text-white font-medium px-6 py-2 rounded-full transition-colors cursor-pointer">
+                Contact
+              </button>
+            </Link>
           </div>
 
           {/* Bouton menu mobile */}
@@ -109,23 +100,25 @@ const Navbar = () => {
               animate="open"
               exit="closed"
               variants={menuVariants}
-              className="container mx-auto px-4 py-6 flex flex-col space-y-4"
+              className="container mx-auto px-4 py-6 flex flex-col space-y-4 items-center"
             >
               {navLinks.map((link) => (
                 <motion.div key={link.name} variants={itemVariants}>
                   <Link 
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="block py-2 text-gray-800 font-medium hover:text-blue-600 transition-colors"
+                    className="block py-2 text-gray-800 font-medium hover:text-logo transition-colors"
                   >
                     {link.name}
                   </Link>
                 </motion.div>
               ))}
               <motion.div variants={itemVariants}>
-                <button className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-full transition-colors">
-                  Démarrer
-                </button>
+                <Link href={"/contact"}>
+                  <button className="bg-logo hover:bg-logo-dark text-white font-medium px-6 py-2 rounded-full transition-colors cursor-pointer">
+                    Contact
+                  </button>
+              </Link>
               </motion.div>
             </motion.div>
           </motion.div>
