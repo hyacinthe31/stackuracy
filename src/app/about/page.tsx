@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import About from "@/components/About";
+import Footer from "@/components/Footer";
 
 export default async function Page() {
 
@@ -7,6 +8,7 @@ export default async function Page() {
     <div>
       <Navbar />
       <About />
+      <Footer />
     </div>
   );
 }

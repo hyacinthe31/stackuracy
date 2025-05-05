@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Client } from "@neondatabase/serverless";
 import Item from "@/components/Item";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -30,6 +31,7 @@ export default async function Page({ params }: Props) {
       <div>
         <Navbar />
         <Item item={item} />
+        <Footer />
       </div>
     );
   } catch (error) {
