@@ -1,4 +1,3 @@
-import { Banner } from "@/components/Banner";
 import Footer from "@/components/Footer";
 import HomePage from "@/components/Homepage";
 import Navbar from "@/components/Navbar";

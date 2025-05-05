@@ -1,5 +1,4 @@
 import { Site } from "@/lib/definitions";
-import { getGithubStars } from "@/lib/github";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 

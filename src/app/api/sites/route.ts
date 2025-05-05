@@ -12,7 +12,7 @@ export async function GET(req: Request) {
   const languages = searchParams.getAll("languages");
 
   const conditions: string[] = [];
-  const values: any[] = [];
+  const values: (string|string[])[] = [];
 
   if (type) {
     const normalizedType = type.replace(/\s/g, "").toLowerCase();

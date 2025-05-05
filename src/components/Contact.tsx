@@ -30,6 +30,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         setMessage("");
     } catch (err) {
         setStatus("error");
+        console.error("Erreur lors de l'envoi du message", err);
     }
 };
 

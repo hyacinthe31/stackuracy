@@ -2,7 +2,6 @@
 
 import type { Site } from "@/lib/definitions";
 import { Card } from "./ui/card";
-import Image from "next/image";
 import { ExternalLink, ThumbsUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import GithubStars from "@/components/GithubStars";

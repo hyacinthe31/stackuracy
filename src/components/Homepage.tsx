@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import MultipleSelector, { Option } from "@/components/ui/multiselect";
 import Table from "@/components/Table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Site } from "@/lib/definitions";
 
 const allLanguages: Option[] = [
   { value: "front-end", label: "Front-end" },
@@ -13,16 +14,18 @@ const allLanguages: Option[] = [
   { value: "python", label: "Python" },
 ]
 
+type SortBy = "none" | "stars-desc" | "votes-desc";
+
 // const allFrameworks: Option[] = [
 //   { value: "react", label: "React" },
 //   { value: "vuejs", label: "Vue.js" },
 // ]
 
 export default function HomePage() {
-    const [sites, setSites] = useState<any[]>([]);
+    const [sites, setSites] = useState<Site[]>([]);
     const [selectedLanguages, setSelectedLanguages] = useState<Option[]>([]);
     const [selectedFrameworks, setSelectedFrameworks] = useState<Option[]>([]);
-    const [sortBy, setSortBy] = useState<"none" | "stars-desc" | "votes-desc">("none");
+    const [sortBy, setSortBy] = useState<SortBy>("none");
 
     useEffect(() => {
       async function fetchSites() {
@@ -76,7 +79,7 @@ export default function HomePage() {
         </div>
         <div className="w-full md:w-1/2">
           <Label>Trier par</Label>
-          <Select value={sortBy} onValueChange={(v) => setSortBy(v as any)}>
+          <Select value={sortBy} onValueChange={(v: SortBy) => setSortBy(v)}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Trier par" />
             </SelectTrigger>
