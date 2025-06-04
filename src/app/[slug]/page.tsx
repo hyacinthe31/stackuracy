@@ -28,9 +28,11 @@ export default async function Page({ params }: Props) {
     const item = result.rows[0];
 
     return (
-      <div>
-        <Navbar />
-        <Item item={item} />
+      <div className="flex flex-col min-h-screen">
+        <div className="flex-1">
+          <Navbar />
+          <Item item={item} />
+        </div>
         <Footer />
       </div>
     );

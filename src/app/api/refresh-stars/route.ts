@@ -11,7 +11,7 @@ export async function GET() {
 
     // Récupérer tous les sites avec un lien GitHub
     const result = await client.query<{ id: number; github: string }>(
-      "SELECT id, github FROM sites WHERE github IS NOT NULL LIMIT 20"
+      "SELECT id, github FROM sites WHERE github IS NOT NULL"
     );
 
     for (const row of result.rows) {
